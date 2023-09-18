@@ -2,8 +2,8 @@
 // Created by Lentokone on 15.9.2023.
 //
 
-#ifndef PERSONPROJECT_TYPES_H
-#define PERSONPROJECT_TYPES_H
+#ifndef PERSONPROJECT_PERSON_H
+#define PERSONPROJECT_PERSON_H
 
 typedef enum {
     A_POSITIVE,
@@ -34,4 +34,4 @@ struct person {
     BloodType bloodType;
 };
 
-#endif //PERSONPROJECT_TYPES_H
+#endif //PERSONPROJECT_PERSON_H
