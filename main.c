@@ -20,6 +20,29 @@ char* getBloodTypeLabel(int blood_index) {
     return str;
 }
 
+int saveSinglePersonToTempFile(struct person person) {
+    const char* temp_dir = getenv("TEMP");
+    if (temp_dir == NULL) {
+        fprintf(stderr, "Failed to get the temporary directory path.\n");
+        return -1;
+    }
+
+    char temp_file[256];
+    snprintf(temp_file, sizeof(temp_file), "%s\\saved_person.txt", temp_dir);
+
+    FILE *file = fopen(temp_file, "a");
+    if (file == NULL) {
+        perror("ERROR: File opening with WRITE/APPEND permissions");
+        return -1;
+    }
+
+    fprintf(file, "%255s|%255s|%d|%d\n", person.fullName, person.address, person.age, person.bloodType);
+
+    fclose(file);
+
+    return 0;
+}
+
 int loadTempFilePersons(struct person persons[]) {
     const char* temp_dir = getenv("TEMP");
 
@@ -33,7 +56,7 @@ int loadTempFilePersons(struct person persons[]) {
 
     FILE *file = fopen(temp_file, "r");
     if (file == NULL) {
-        perror("ERROR: File opening");
+        perror("ERROR: File opening with READ permissions");
         return -1;
     }
 
@@ -48,7 +71,27 @@ int loadTempFilePersons(struct person persons[]) {
 }
 
 void showSavedPersonList() {
-    printf("Name: PERSELISTASD\n");
+    printf("Name: asd\n");
+}
+
+int createNewPerson() {
+    struct person newPerson;
+
+    printf("\nFullname: ");
+    scanf("%254s", newPerson.fullName);
+
+    printf("\nAddress: ");
+    scanf("%254s", newPerson.address);
+
+    printf("\nBlood type: ");
+    scanf("%d", &newPerson.bloodType);
+
+    printf("\nAge: ");
+    scanf("%d", &newPerson.age);
+
+    saveSinglePersonToTempFile(newPerson);
+
+    return 0;
 }
 
 void NavigationMenuAction(int selection) {
@@ -57,7 +100,7 @@ void NavigationMenuAction(int selection) {
             showSavedPersonList();
             break;
         case 2:
-            printf("Name: NAVLIST\n");
+            createNewPerson();
             break;
         case 3:
             printf("Name: REMOVE SELECTED\n");
@@ -76,13 +119,6 @@ int validateNavigationMenuSelection(int selection) {
             return 0;
     }
     return -1;
-}
-
-int createNewPerson() {
-    char fullName[254], address[254], bloodType[3];
-    int age;
-    printf("Menu: Write your action below\n");
-    scanf()
 }
 
 int navigationMenu() {
