@@ -12,16 +12,7 @@ typedef enum {
     B_POSITIVE
 } BloodType;
 
-const char* BOOL_TYPE_NAMES[] = {
-        "A+",
-        "A-",
-        "O-",
-        "O+",
-        "AB+",
-        "AB-",
-        "B-",
-        "B+"
-};
+extern const char* BOOL_TYPE_WITH_NAMES[];
 
 struct person {
     char fullName[255];
