@@ -1,6 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "../includes/create_person.h"
 
 void showSavedPersonList() {
     printf("Name: asd\n");

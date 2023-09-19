@@ -1,15 +1,12 @@
-//
-// Created by Lentokone on 18.9.2023.
-//
-
 #include <stdio.h>
-#include "../includes/person.h"
 #include "../includes/file_handler.h"
 
 int createNewPerson() {
     struct person newPerson;
 
-    printf("\nFullname: ");
+    printf("\n");
+
+    printf("Fullname: ");
     if (scanf(" %[^\n]", newPerson.fullName) != 1) {
         printf("Invalid input for Fullname.\n");
         return 1;

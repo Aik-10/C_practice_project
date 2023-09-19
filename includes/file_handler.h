@@ -2,7 +2,7 @@
 #define PERSONPROJECT_FILE_HANDLER_H
 #include "person.h"
 
-int saveSinglePersonToTempFile(struct person person, char *file_name[]);
-int loadTempFilePersons(struct person persons[], int *max_person);
+int saveSinglePersonToTempFile(struct person person);
+int loadTempFilePersons(struct person persons[]);
 
 #endif //PERSONPROJECT_FILE_HANDLER_H

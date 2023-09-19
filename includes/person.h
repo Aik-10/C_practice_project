@@ -1,7 +1,3 @@
-//
-// Created by Lentokone on 15.9.2023.
-//
-
 #ifndef PERSONPROJECT_PERSON_H
 #define PERSONPROJECT_PERSON_H
 

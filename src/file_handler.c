@@ -28,7 +28,7 @@ int saveSinglePersonToTempFile(struct person person) {
     return 0;
 }
 
-int loadTempFilePersons(struct person persons[], int *max_person) {
+int loadTempFilePersons(struct person persons[]) {
     const char* temp_dir = getenv("TEMP");
 
     if (temp_dir == NULL) {
@@ -46,7 +46,7 @@ int loadTempFilePersons(struct person persons[], int *max_person) {
     }
 
     int personAmount = 0;
-    while (personAmount < *max_person && fscanf(file, "%255[^|]|%255[^|]|%d|%d[\\n]", persons[personAmount].fullName, persons[personAmount].address, &persons[personAmount].age, &persons[personAmount].bloodType ) == 4) {
+    while (personAmount < MAX_PERSON_AMOUNT && fscanf(file, "%255[^|]|%255[^|]|%d|%d[\\n]", persons[personAmount].fullName, persons[personAmount].address, &persons[personAmount].age, &persons[personAmount].bloodType ) == 4) {
         personAmount++;
     }
 
