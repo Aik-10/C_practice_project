@@ -3,19 +3,17 @@
 
 int createNewPerson() {
     struct person newPerson;
+    int c;
 
-    printf("\n");
-
-    printf("Fullname: ");
+    printf("\nFullname: ");
     if (scanf(" %[^\n]", newPerson.fullName) != 1) {
         printf("Invalid input for Fullname.\n");
         return 1;
     }
 
-    int c;
     while ((c = getchar()) != '\n' && c != EOF);
 
-    printf("\nAddress: ");
+    printf("Address: ");
     if (scanf(" %[^\n]", newPerson.address) != 1) {
         printf("Invalid input for Address.\n");
         return 1;
@@ -23,20 +21,17 @@ int createNewPerson() {
 
     while ((c = getchar()) != '\n' && c != EOF);
 
-    printf("\nBlood type: ");
+    printf("Blood type:");
     if (scanf("%d", &newPerson.bloodType) != 1) {
         printf("Invalid input for Blood type.\n");
         return 1;
     }
 
-    printf("\nAge: ");
+    printf("Age:");
     if (scanf("%d", &newPerson.age) != 1) {
         printf("Invalid input for Age.\n");
         return 1;
     }
-
-    printf("You entered: %s\n", newPerson.fullName);
-    printf("Your age is: %d\n", newPerson.age);
 
     saveSinglePersonToTempFile(newPerson);
 

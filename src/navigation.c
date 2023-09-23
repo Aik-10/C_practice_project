@@ -1,26 +1,50 @@
 #include <stdio.h>
 #include "../includes/create_person.h"
+#include "../includes/person.h"
+#include "../includes/blood_type_handler.h"
 
-void showSavedPersonList() {
+static void printPerson(struct person* p) {
+    char* bloodType = getBloodTypeLabelByIndex(p->bloodType);
+
+    printf("Full Name: %s\n", p->fullName);
+    printf("Address: %s\n", p->address);
+    printf("Age: %d\n", p->age);
+    printf("Blood Type: %s\n", bloodType);
+    printf("--------------------\n");
+}
+
+static void removeSingleSavedPerson(struct person savedPersons[], int* savePersonsCount) {
     printf("Name: asd\n");
 }
 
-void NavigationMenuAction(int *selection) {
+static void showSavedPersonList(struct person savedPersons[], int* savePersonsCount) {
+    printf("\nAll person displayed!\n\n");
+
+    for (int i = 0; i < *savePersonsCount; i++) {
+        printPerson(&savedPersons[i]);
+    }
+}
+
+static void NavigationMenuAction(int *selection, struct person savedPersons[], int* savePersonsCount) {
     switch (*selection) {
         case 1:
-            showSavedPersonList();
+            if ( *savePersonsCount <= 0 ) {
+                printf("Cannot print empty list");
+                return;
+            }
+            showSavedPersonList(savedPersons, savePersonsCount);
             break;
         case 2:
             createNewPerson();
             break;
         case 3:
-            printf("Name: REMOVE SELECTED\n");
+            removeSingleSavedPerson(savedPersons, savePersonsCount);
             break;
     }
 }
 
-int validateNavigationMenuSelection(int *selection) {
-    switch (*selection) {
+static int validateNavigationMenuSelection(int selection) {
+    switch (selection) {
         case 1:
         case 2:
         case 3:
@@ -32,25 +56,24 @@ int validateNavigationMenuSelection(int *selection) {
     return -1;
 }
 
-
-int generalNavigationMenu() {
+int generalNavigationMenu(struct person savedPersons[], int* savePersonsCount) {
     int selection;
     int validInput = 0;
 
     while (!validInput) {
         printf("Menu: Write your action below\n");
-        printf("1. Print users\n");
+        printf("1. Print users (%d)\n", *savePersonsCount);
         printf("2. Create new user\n");
         printf("3. Remove selected user\n");
         printf("4. Exit\n");
         printf("Selection: ");
 
         if (scanf("%d", &selection) == 1) {
-            int isValid = validateNavigationMenuSelection(&selection);
+            int isValid = validateNavigationMenuSelection(selection);
 
             if (isValid >= 1) {
                 validInput = 1;
-                NavigationMenuAction(&selection);
+                NavigationMenuAction(&selection, savedPersons, savePersonsCount);
             } else if (isValid == 0) {
                 return 1;
             }

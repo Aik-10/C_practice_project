@@ -14,4 +14,5 @@ add_executable(personProject src/main.c
         includes/navigation.h
         src/create_person.c
         includes/create_person.h
+        includes/general.h
 )

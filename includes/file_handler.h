@@ -4,5 +4,6 @@
 
 int saveSinglePersonToTempFile(struct person person);
 int loadTempFilePersons(struct person persons[]);
+int savePersonsToTempFile(struct person persons[]);
 
 #endif //PERSONPROJECT_FILE_HANDLER_H

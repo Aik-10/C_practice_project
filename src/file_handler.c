@@ -1,9 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../includes/person.h"
+#include "../includes/general.h"
 
-const int MAX_PERSON_AMOUNT = 10;
 const char FILE_NAME[] = "saved_person.txt";
+
+int savePersonsToTempFile(struct person persons[]) {
+    return 0;
+}
 
 int saveSinglePersonToTempFile(struct person person) {
     const char* temp_dir = getenv("TEMP");
@@ -12,8 +17,14 @@ int saveSinglePersonToTempFile(struct person person) {
         return -1;
     }
 
-    char temp_file[256];
-    snprintf(temp_file, sizeof(temp_file), "%s\\%s", temp_dir, FILE_NAME);
+    size_t buffer_size = strlen(temp_dir) + strlen(FILE_NAME) + 2;
+    if (buffer_size > MAX_PATH_LENGTH) {
+        perror("Path length exceeds maximum allowed.\n");
+        return -1;
+    }
+
+    char* temp_file = (char*)malloc(buffer_size);
+    snprintf(temp_file, buffer_size, "%s/%s", temp_dir, FILE_NAME);
 
     FILE *file = fopen(temp_file, "a");
     if (file == NULL) {
@@ -21,9 +32,10 @@ int saveSinglePersonToTempFile(struct person person) {
         return -1;
     }
 
-    fprintf(file, "%255s|%255s|%d|%d\n", person.fullName, person.address, person.age, person.bloodType);
+    fprintf(file, "%s|%s|%d|%d\n", person.fullName, person.address, person.age, person.bloodType);
 
     fclose(file);
+    free(temp_file);
 
     return 0;
 }
@@ -36,8 +48,15 @@ int loadTempFilePersons(struct person persons[]) {
         return -1;
     }
 
-    char temp_file[256];
-    snprintf(temp_file, sizeof(temp_file), "%s\\%s", temp_dir, FILE_NAME);
+    size_t buffer_size = strlen(temp_dir) + strlen(FILE_NAME) + 2;
+
+    if (buffer_size > MAX_PATH_LENGTH) {
+        perror("Path length exceeds maximum allowed.\n");
+        return -1;
+    }
+
+    char* temp_file = (char*)malloc(buffer_size);
+    snprintf(temp_file, buffer_size, "%s/%s", temp_dir, FILE_NAME);
 
     FILE *file = fopen(temp_file, "r");
     if (file == NULL) {
@@ -51,6 +70,7 @@ int loadTempFilePersons(struct person persons[]) {
     }
 
     fclose(file);
+    free(temp_file);
 
     return personAmount;
 }

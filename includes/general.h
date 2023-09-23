@@ -1,0 +1,11 @@
+//
+// Created by Lentokone on 22.9.2023.
+//
+
+#ifndef PERSONPROJECT_GENERAL_H
+#define PERSONPROJECT_GENERAL_H
+
+#define MAX_PERSON_AMOUNT 10
+#define MAX_PATH_LENGTH 4096
+
+#endif //PERSONPROJECT_GENERAL_H

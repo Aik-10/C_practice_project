@@ -1,6 +1,6 @@
 #include "../includes/file_handler.h"
 #include "../includes/navigation.h"
-#define MAX_PERSON_AMOUNT 10
+#include "../includes/general.h"
 
 int main() {
     struct person savedPersons[MAX_PERSON_AMOUNT];
@@ -10,7 +10,7 @@ int main() {
         return 1;
     }
 
-    generalNavigationMenu();
+    generalNavigationMenu(savedPersons, &personsCount);
 
     return 0;
 }
