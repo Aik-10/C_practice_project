@@ -4,7 +4,8 @@
 
 #ifndef PERSONPROJECT_CREATE_PERSON_H
 #define PERSONPROJECT_CREATE_PERSON_H
+#include "person.h"
 
-int createNewPerson();
+int createNewPerson(struct person savedPersons[], int* savePersonsCount);
 
 #endif //PERSONPROJECT_CREATE_PERSON_H

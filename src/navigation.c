@@ -35,7 +35,7 @@ static void NavigationMenuAction(int *selection, struct person savedPersons[], i
             showSavedPersonList(savedPersons, savePersonsCount);
             break;
         case 2:
-            createNewPerson();
+            createNewPerson(savedPersons, savePersonsCount);
             break;
         case 3:
             removeSingleSavedPerson(savedPersons, savePersonsCount);

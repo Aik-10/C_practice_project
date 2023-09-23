@@ -2,7 +2,7 @@
 #include "../includes/file_handler.h"
 #include "../includes/blood_type_handler.h"
 
-int createNewPerson() {
+int createNewPerson(struct person savedPersons[], int* savePersonsCount) {
     struct person newPerson;
     int c;
 
@@ -43,6 +43,9 @@ int createNewPerson() {
     }
 
     printf("\nNew person saved to TEMP file");
+
+    savedPersons[*savePersonsCount] = newPerson;
+    savePersonsCount++;
 
     /* TODO: Push to old table list */
     return 0;

@@ -1,4 +1,3 @@
-#include <stdlib.h>
 #include "../includes/file_handler.h"
 #include "../includes/navigation.h"
 #include "../includes/general.h"
