@@ -28,6 +28,14 @@ char* getBloodTypeLabelByIndex(int blood_index) {
     return str;
 }
 
-int getBloodTypeIndexByLabel(char blood_label[]) {
-    return 0;
+int getBloodTypeIndexByLabel(const char* blood_label) {
+    int length = sizeof(BOOL_TYPE_WITH_NAMES) / sizeof(BOOL_TYPE_WITH_NAMES[0]);
+
+    for (int i = 0; i < length; i++) {
+        if (strcmp(BOOL_TYPE_WITH_NAMES[i], blood_label) == 0) {
+            return i;
+        }
+    }
+
+    return -1;
 }

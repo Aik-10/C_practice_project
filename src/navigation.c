@@ -6,11 +6,11 @@
 static void printPerson(struct person* p) {
     char* bloodType = getBloodTypeLabelByIndex(p->bloodType);
 
-    printf("Full Name: %s\n", p->fullName);
-    printf("Address: %s\n", p->address);
-    printf("Age: %d\n", p->age);
-    printf("Blood Type: %s\n", bloodType);
-    printf("--------------------\n");
+    printf("Full Name: %s", p->fullName);
+    printf("\nAddress: %s", p->address);
+    printf("\nAge: %d", p->age);
+    printf("\nBlood Type: %s", bloodType);
+    printf("\n--------------------\n");
 }
 
 static void removeSingleSavedPerson(struct person savedPersons[], int* savePersonsCount) {
@@ -66,12 +66,16 @@ int generalNavigationMenu(struct person savedPersons[], int* savePersonsCount) {
         printf("2. Create new user\n");
         printf("3. Remove selected user\n");
         printf("4. Exit\n");
-        printf("Selection: ");
+        printf("Selection:");
 
         if (scanf("%d", &selection) == 1) {
             int isValid = validateNavigationMenuSelection(selection);
 
             if (isValid >= 1) {
+                if ( selection == 4 ) {
+                    return 1;
+                }
+
                 validInput = 1;
                 NavigationMenuAction(&selection, savedPersons, savePersonsCount);
             } else if (isValid == 0) {

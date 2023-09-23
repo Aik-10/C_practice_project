@@ -15,9 +15,10 @@ typedef enum {
 extern const char* BOOL_TYPE_WITH_NAMES[];
 
 struct person {
-    char fullName[20];
-    char address[20];
+    char fullName[255];
+    char address[255];
     int age;
+    char bloodLabel[3];
     BloodType bloodType;
 };
 

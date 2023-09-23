@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "../includes/file_handler.h"
 #include "../includes/navigation.h"
 #include "../includes/general.h"
@@ -10,7 +11,12 @@ int main() {
         return 1;
     }
 
-    generalNavigationMenu(savedPersons, &personsCount);
+    while (1) {
+        int selection = generalNavigationMenu(savedPersons, &personsCount);
+        if ( selection == 1 ) {
+            break;
+        }
+    }
 
     return 0;
 }
