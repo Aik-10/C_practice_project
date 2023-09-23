@@ -6,7 +6,37 @@
 
 const char FILE_NAME[] = "saved_person.txt";
 
-int savePersonsToTempFile(struct person persons[]) {
+int savePersonsToTempFile(struct person persons[], int* savePersonsCount) {
+    const char* temp_dir = getenv("TEMP");
+    if (temp_dir == NULL) {
+        fprintf(stderr, "Failed to get the temporary directory path.\n");
+        return -1;
+    }
+
+    size_t buffer_size = strlen(temp_dir) + strlen(FILE_NAME) + 2;
+    if (buffer_size > MAX_PATH_LENGTH) {
+        perror("Path length exceeds maximum allowed.\n");
+        return -1;
+    }
+
+    char* temp_file = (char*)malloc(buffer_size);
+    snprintf(temp_file, buffer_size, "%s/%s", temp_dir, FILE_NAME);
+
+    FILE *file = fopen(temp_file, "w");
+    if (file == NULL) {
+        perror("ERROR: File opening with WRITE/APPEND permissions");
+        return -1;
+    }
+
+    for (size_t i = 0; i < *savePersonsCount; i++) {
+        fprintf(file, "%s|%s|%d|%d\n", persons[i].fullName, persons[i].address, persons[i].age, persons[i].bloodType);
+    }
+
+    fclose(file);
+    free(temp_file);
+
+    printf("Persons written to file successfully.\n");
+
     return 0;
 }
 
