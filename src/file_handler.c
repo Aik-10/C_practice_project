@@ -24,12 +24,12 @@ int savePersonsToTempFile(struct person persons[], int* savePersonsCount) {
 
     FILE *file = fopen(temp_file, "w");
     if (file == NULL) {
-        perror("ERROR: File opening with WRITE/APPEND permissions");
+        perror("ERROR: File opening with WRITE permissions");
         return -1;
     }
 
     for (size_t i = 0; i < *savePersonsCount; i++) {
-        fprintf(file, "%s|%s|%d|%d\n", persons[i].fullName, persons[i].address, persons[i].age, persons[i].bloodType);
+        fprintf(file, "%s|%s|%d|%d", persons[i].fullName, persons[i].address, persons[i].age, persons[i].bloodType);
     }
 
     fclose(file);

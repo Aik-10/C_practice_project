@@ -2,6 +2,7 @@
 #include "../includes/create_person.h"
 #include "../includes/person.h"
 #include "../includes/blood_type_handler.h"
+#include "../includes/file_handler.h"
 
 static void printPerson(struct person* p) {
     char* bloodType = getBloodTypeLabelByIndex(p->bloodType);
@@ -13,8 +14,45 @@ static void printPerson(struct person* p) {
     printf("\n--------------------\n");
 }
 
+void removePersonByIndex(struct person* persons, int* numberOfPersons, int index) {
+    if (index < 0 || index >= *numberOfPersons) {
+        printf("Invalid index for removal.\n");
+        return;
+    }
+
+    for (int i = index; i < *numberOfPersons - 1; i++) {
+        persons[i] = persons[i + 1];
+    }
+
+    (*numberOfPersons)--;
+}
+
 static void removeSingleSavedPerson(struct person savedPersons[], int* savePersonsCount) {
-    printf("Name: asd\n");
+    printf("\nAll person displayed!\n\n");
+    for (int i = 0; i < *savePersonsCount; i++) {
+        char* bloodType = getBloodTypeLabelByIndex(savedPersons[i].bloodType);
+        printf("Index: %d | Name: %s / Address: %s / Age %d / Blood type: %s\n", i, savedPersons[i].fullName, savedPersons[i].address, savedPersons[i].age, bloodType);
+    }
+
+    int validInput = 0;
+    int selection;
+
+    while (!validInput) {
+        printf("Select person to remove list\n");
+        printf("Selection:");
+
+        if (scanf("%d", &selection) == 1) {
+            if (!savedPersons[ selection ].fullName) continue;
+            validInput = 1;
+        } else {
+            printf("\nInvalid input. Please enter an integer.\n");
+            while (getchar() != '\n');
+        }
+    }
+
+    removePersonByIndex(savedPersons, savePersonsCount, selection);
+    savePersonsToTempFile(savedPersons, savePersonsCount);
+
 }
 
 static void showSavedPersonList(struct person savedPersons[], int* savePersonsCount) {
@@ -89,3 +127,5 @@ int generalNavigationMenu(struct person savedPersons[], int* savePersonsCount) {
 
     return 0;
 }
+
+#pragma clang diagnostic pop
