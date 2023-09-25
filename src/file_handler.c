@@ -29,7 +29,7 @@ int savePersonsToTempFile(struct person persons[], int* savePersonsCount) {
     }
 
     for (size_t i = 0; i < *savePersonsCount; i++) {
-        fprintf(file, "%s|%s|%d|%d", persons[i].fullName, persons[i].address, persons[i].age, persons[i].bloodType);
+        fprintf(file, "%s|%s|%d|%d\n", persons[i].fullName, persons[i].address, persons[i].age, persons[i].bloodType);
     }
 
     fclose(file);

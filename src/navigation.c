@@ -14,10 +14,10 @@ static void printPerson(struct person* p) {
     printf("\n--------------------\n");
 }
 
-void removePersonByIndex(struct person* persons, int* numberOfPersons, int index) {
+int removePersonByIndex(struct person* persons, int* numberOfPersons, int index) {
     if (index < 0 || index >= *numberOfPersons) {
         printf("Invalid index for removal.\n");
-        return;
+        return -1;
     }
 
     for (int i = index; i < *numberOfPersons - 1; i++) {
@@ -25,6 +25,8 @@ void removePersonByIndex(struct person* persons, int* numberOfPersons, int index
     }
 
     (*numberOfPersons)--;
+
+    return 0;
 }
 
 static void removeSingleSavedPerson(struct person savedPersons[], int* savePersonsCount) {
@@ -50,7 +52,10 @@ static void removeSingleSavedPerson(struct person savedPersons[], int* savePerso
         }
     }
 
-    removePersonByIndex(savedPersons, savePersonsCount, selection);
+    if ( removePersonByIndex(savedPersons, savePersonsCount, selection) == -1 ) {
+        perror("Invalid index for removal");
+        return;
+    }
     savePersonsToTempFile(savedPersons, savePersonsCount);
 
 }
