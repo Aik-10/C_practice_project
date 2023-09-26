@@ -42,11 +42,9 @@ int createNewPerson(struct person savedPersons[], int* savePersonsCount) {
         return saveStatus;
     }
 
-    printf("\nNew person saved to TEMP file");
+    printf("\nNew person saved to TEMP file\n");
 
-    savedPersons[*savePersonsCount] = newPerson;
-    savePersonsCount++;
+    savedPersons[(*savePersonsCount)++] = newPerson;
 
-    /* TODO: Push to old table list */
     return 0;
 }
