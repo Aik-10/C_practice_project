@@ -1,31 +1,23 @@
-Sovellus on “Terminaali” pohjainen.
+<img src="https://www.oamk.fi/images/Logot/Suomi-www-sahkoinen-png-rgb/www_sivut_ja_sahkoiset_esitykset_suomeksi_varillinen-02.png" align="center" />
 
-Ohjelman käynnistyessä, voit valita mitä suoritat,
+# C_practice_project
+Welcome to the C Language Practice Project! The purpose of this project is to improve my skills in the C programming language.
 
-Luot uuden henkilön
-Tulostat kaikki henkilöt.
-Poista kaikki
-Poistaa tietyn henkilön
+## Project Overview
+Features 
+- **Create new person**
+- **Print all saved persons**
+- **Remove all persons**
+- **Remove specific person**
 
-Ohjelman syötetään henkilötietoja (
-    Fullname CHAR[],
-    age INT,
-    address CHAR[],
-    Veriryhmä {A+, A-, O-, O+, AB+, AB-, B- ja B+}
-).
-
-Ohjelma tarkistaa jokaisen syötteen oikean tyypin, sekä estää duplicate datan syöttämisen
-
-Ohjelma tallentaa kaikki lisätyt henkilöt teksti tiedostoon. `%temp%/saved_person.txt` (WIN), Henkilötiedot ladataan ohjelman muistiin tiedostosta, kun ohjelma käynnistyy.
-
-Ohjelmassa ominaisuuksia on hajautettu eri tiedostoihin sekä omiin header tiedostoihin.
-
-Ohjelman logiikkaa on hajautettu omiin funktioihin, jotta koodi on luottavampaa. 
-
--------------
-
-```C
-char* bloodType = getBloodTypeLabel(persons[personAmount].bloodType);
-printf("Name: %s / Address: %s / Age %d / Blood type: %s\n", persons[personAmount].fullName, persons[personAmount].address, persons[personAmount].age, bloodType);
-free(bloodType);
+Required Fields
 ```
+Fullname CHAR[],
+age INT,
+address CHAR[],
+Veriryhmä {A+, A-, O-, O+, AB+, AB-, B- ja B+}
+```
+Save path `%temp%/saved_person.txt` (WIN)
+
+## Feedback and Support
+If you have any questions, feedback, or need support, don't hesitate to open an issue in the repository.
